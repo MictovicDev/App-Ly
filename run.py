@@ -3,6 +3,7 @@ from scrape import get_job_description, generate_cover_letter, read_pdf_file
 
 def main():
     url = os.environ.get('URL', '')
+    print(url)
     name = os.environ.get('PDF_NAME', None)
     description = get_job_description(url)
     pdf = read_pdf_file(name)

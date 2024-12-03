@@ -9,18 +9,16 @@ load_dotenv()
 api_key = os.getenv('API_KEY')
 
 genai.configure(api_key=api_key)
-# 
 
 model = genai.GenerativeModel("gemini-1.5-flash")
 
-
 def get_job_description(url):   
     try:
-        print(url)
         article = Article(url)
         article.download()
         article.parse() 
         job_description = article.text
+        print(job_description)
       
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
@@ -63,6 +61,7 @@ def generate_cover_letter(job_description, pdf_text):
     Generate the cover letter based on the above information.
     """
     response = model.generate_content(prompt_template)
+    print(response.text)
     return response.text
 
 
